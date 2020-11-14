@@ -1,12 +1,17 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.4.10'
+    id 'maven-publish'
+    id 'org.jetbrains.dokka' version '1.4.10.2'
+    id 'signing'
+    id 'com.palantir.git-version' version '0.12.3'
 }
 
 group 'pro.felixo'
-version '1.0-SNAPSHOT'
+version gitVersion()
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -25,4 +30,75 @@ compileTestKotlin {
 
 test {
     useJUnitPlatform()
+}
+
+task sourcesJar(type: Jar) {
+    classifier "sources"
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    classifier = 'javadoc'
+    from "$buildDir/javadoc"
+}
+
+artifacts {
+    archives jar
+    archives sourcesJar
+    archives javadocJar
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifact(sourcesJar) {
+                classifier = 'sources'
+            }
+
+            artifact(javadocJar) {
+                classifier = 'javadoc'
+            }
+
+            pom {
+                name = "csv-kotlin"
+                description = "A clean, fast, and convenient CSV library for Kotlin/JVM"
+                url = "https://github.com/berlix/csv-kotlin"
+                licenses {
+                    license {
+                        name = "The Unlicense"
+                        url = "https://unlicense.org"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "berlix"
+                        name = "Felix Engelhardt"
+                        email = "pub@felix-engelhardt.de"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git://github.com/berlix/csv-kotlin.git"
+                    developerConnection = "scm:git:git@github.com:berlix/csv-kotlin.git"
+                    url = "https://github.com/berlix/csv-kotlin"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = System.getenv("OSSRH_USERNAME")
+                password = System.getenv("OSSRH_TOKEN")
+            }
+        }
+    }
+}
+
+signing {
+    useInMemoryPgpKeys(System.getenv("OSSRH_GPG_KEY"), System.getenv("OSSRH_GPG_PASSWORD"))
+    sign publishing.publications.mavenJava
 }
