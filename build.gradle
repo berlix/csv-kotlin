@@ -12,8 +12,8 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-    testCompile "com.willowtreeapps.assertk:assertk-jvm:0.21"
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:5.4.2"
+    testImplementation "com.willowtreeapps.assertk:assertk-jvm:0.21"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:5.4.2"
 }
 
 compileKotlin {
