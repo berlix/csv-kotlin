@@ -15,6 +15,18 @@ other than the Kotlin standard library.
 
 ## Quick start
 
+To add the csv-kotlin dependency in Gradle:
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation "pro.felixo:csv-kotlin:1.0.0"
+    }
+
+To import all available classes and convenience functions:
+
     import pro.felixo.csv.*
 
 ### Reading CSV
