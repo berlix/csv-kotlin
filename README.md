@@ -1,5 +1,7 @@
 # A clean, fast, and convenient CSV library for Kotlin/JVM
 
+[![Release](https://img.shields.io/github/v/release/berlix/csv-kotlin.svg)](https://github.com/berlix/csv-kotlin/releases)
+
 The motivation for creating this library is to have a CSV reader/writer for Kotlin/JVM which is
 * clean,
 * lean,
