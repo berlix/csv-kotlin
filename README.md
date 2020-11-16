@@ -13,6 +13,11 @@ The motivation for creating this library is to have a CSV reader/writer for Kotl
 The library exposes a straightforward interface that relies on standard Kotlin idioms. It has no dependencies
 other than the Kotlin standard library.
 
+## API documentation
+
+Refer to the [Dokka documentation](https://berlix.github.io/csv-kotlin/apidocs/1.0.0/csv-kotlin/) for a complete
+description of the APIs.
+
 ## Quick start
 
 To add the csv-kotlin dependency in Gradle:
