@@ -120,4 +120,5 @@ use `asRowsWithHeaders`:
 ## Advanced use cases
 
 The examples in _Quick start_ use provided convenience methods only. If you need more control, use the classes
-`CsvReader` and `CsvWriter` directly.
+`CsvReader` and `CsvWriter` directly. Refer to the [Dokka documentation](https://berlix.github.io/csv-kotlin/apidocs/1.0.0/csv-kotlin/) for a complete
+description of the APIs.
