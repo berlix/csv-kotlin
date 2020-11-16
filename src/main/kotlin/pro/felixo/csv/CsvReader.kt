@@ -21,7 +21,7 @@ class CsvReader(
     private var rowNumber = 0
 
     /**
-     * Returns one row of values as a sequence, which may be iterator over only once.
+     * Returns one row of values as a sequence, which may be iterated over only once.
      * After exhausting the sequence, the underlying Reader's position will be at the beginning of the subsequent row.
      * This method must not be invoked again until the previously returned sequence has been exhausted.
      *
